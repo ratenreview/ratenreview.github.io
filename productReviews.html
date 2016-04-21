@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+
+<head lang="en">
+    <meta charset="UTF-8">
+    <!-- custom stylesheets -->
+    <link href="https://builder.yaas.io/public/css/styles.css" rel="stylesheet" />
+    <link href="css/main.css" rel="stylesheet" />
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>
+    <script src="https://builder.yaas.io/public/js/builder.js"></script>
+    <script src="js/builder-index.js"></script>
+    <title>Product Reviews</title>
+</head>
+<body id="review-details" ng-app="epam.builder" ng-controller="ProductReviewsController">
+<div class="wrapper" ng-cloak>
+    <div class="container-fluid" style="margin-left:10px;">
+        <div class="row header">
+			<div class="navbar-left">
+		        <div class="y-toolbar">
+		            <div class="y-toolbar-cell">
+		               <button class="btn-subordinate btn navbar-btn" ng-click="goToReviewSummary()">
+		                 <span class="hyicon hyicon-back"></span> <span class="hidden-xs">Back</span>
+		               </button>
+		            </div>
+		        </div>
+		    </div>
+		    <div class="y-navbar-center">
+		    	<div class="y-navbar-center-content product-name-header">
+					<a href="{{productUrl}}" target="_blank" class="product-name-link">{{productName}}</a>
+				</div>
+			</div>
+        </div>
+	   <div class="panel panel-default" ng-repeat="review in productReviews track by $index">
+			<div class="panel-heading">
+				<span>{{review.authorName}}</span>
+				<div class="approve-remove-box">
+					<button class="btn btn-sm btn-success" ng-click="approve($index)">						
+						APPROVE
+					</button>
+					<button class="btn btn-sm btn-danger" ng-click="remove($index)">
+						<span ng-if="review.previousReview">ROLLBACK</span>
+						<span ng-if="!review.previousReview">REJECT</span>
+					</button>
+				</div>
+			</div>
+			<div class="panel-body">
+				<ratings review-score="{{review.rating}}"></ratings>
+                <p class="review-text">
+                    {{review.reviewText}}
+                </p>
+			</div>
+		</div>
+    </div>
+</div>
+</body>
+</html>

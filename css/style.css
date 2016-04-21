@@ -1,0 +1,90 @@
+/*Review Stars*/
+.star-rating {
+    margin: 0;
+    padding: 0;
+    display: inline-block;
+}
+
+.star-rating .star {
+    padding: 1px;
+    color: #ddd;
+    font-size: 20px;
+    text-shadow: .03em .03em #aaa;
+    list-style-type: none;
+    display: inline-block;
+    cursor: default;
+}
+
+.star-rating .star.star-filled {
+    color: #EDA51C;
+}
+
+.review-text {
+    font-size: 1.2em;
+    word-wrap: break-word;
+}
+
+#review-details .navbar-right {
+	padding-top: 2.5%;
+    padding-right: 1%;
+}
+#reviews-configuration .navbar-right,
+#review-details .navbar-right {
+    width: 15%;	
+}
+#reviews-configuration .wrapper {
+	padding: 0;
+}
+
+[ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak {
+    display: none !important;
+ }
+ 
+ .product-name-header .product-name-link {
+ 	font-size: 2em;
+ }
+ .product-name-header .product-name-link:hover {
+ 	text-decoration: none;
+ }
+ .y-navbar-center-content.product-name-header {
+ 	padding-top: 20px;
+ }
+ .no-reviews {
+ 	text-align: center;
+ }
+ 
+@media screen and (max-width: 767px) {
+	#review-details .navbar.y-navbar-centered .y-navbar-center-content h1 {
+	    text-align: center;
+	}
+}
+
+.original-version {
+	border-right: 1px solid #ccc;
+}
+
+#review-details  .panel-body  .col-md-6  {
+	float: left; 
+	width: 50%; 
+}
+
+
+#review-details  .panel-body  .col-md-6 p.title { 
+	font-size: 15px; 
+	font-weight: bold; 
+	padding: 5px 0; 
+	background-color: #eee; 
+}
+#review-details  .panel-body  .col-md-6.modified-version p.title { 
+	background-color: #ccc;  
+}
+.btn-grey {
+	background-color: #D2DAE5;
+}
+
+#reviews-configuration .col-xs-12 {
+	padding-bottom: 5%;
+}
+#reviews-configuration .panel:first-child {
+	margin-top: 20px;
+}

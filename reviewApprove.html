@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- custom stylesheets -->
+    <link href="https://builder.yaas.io/public/css/styles.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>    
+    <script src="https://builder.yaas.io/public/js/builder.js"></script>
+    <script src="js/builder-index.js"></script>
+    <title>Reviews</title>
+</head>
+
+<body id="review-details" ng-app="epam.builder" ng-controller="ReviewApproveCtrl">
+<div class="wrapper">
+    <div class="navbar navbar-default navbar-fixed-top y-navbar-centered y-navbar-lg">
+        <div class="container-fluid">
+
+            <div class="y-navbar-center">
+                <div class="y-navbar-center-content">
+                    <h1> Unapproved reviews </h1>
+                </div>
+            </div>
+            
+            <div class="navbar-right" ng-show="reviews.length > 0">
+           		<span class="y-toggle y-toggle-sm">
+				  <input type="checkbox" id="toggleidsm" ng-click="groupByProduct=!groupByProduct"/>
+				  <label for="toggleidsm">Group by product</label>
+				</span>
+            </div>
+        </div>
+    </div>
+    <div class="wrapper" ng-cloak>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                	<h3 class="no-reviews" ng-show="reviews.length == 0">No new reviews</h3>
+                
+					<ul class="dataCards" ng-show="groupByProduct">							
+						<li class="dataCard" ng-repeat="(key,value) in reviews | groupBy: 'productName'">
+						   <div class="cardRow cardRowClickable" ng-click="goToProductReviews(key, reviews)">
+						       <p class="primaryData">
+						         {{key}}
+						       </p>
+						       <p class="secondaryData">
+						         {{value.length}} new review(s)
+						       </p>
+						   </div>
+						 </li>
+					</ul>
+					
+                    <div class="panel panel-default" ng-repeat="review in reviews track by $index" ng-show="!groupByProduct">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-4"><h2>Product Name :<br>
+                                            <a href="{{review.productUrl}}" target="_blank">{{review.productName}}</a>
+                                        </h2>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h2>Author name :<br>
+                                                {{review.authorName}}
+                                            </h2>
+                                        </div>
+                                        <div class=" col-md-4"><h2>Author email :<br>
+                                            {{review.authorEmail}}
+                                        </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <h2 class="pull-right">
+                                        <button class="btn btn-sm btn-success" ng-click="approve($index)">
+                                            APPROVE
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" ng-click="remove($index)">
+                                            <span ng-if="review.previousReview">ROLLBACK</span>
+                                            <span ng-if="!review.previousReview">REJECT</span>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row" ng-if="review.previousReview">
+                                <div class="col-md-6 original-version">
+                                	<p class="title">Original version</p>
+                                    <ratings review-score="{{review.previousReview.rating}}"></ratings>
+
+                                    <p class="review-text">
+                                        {{review.previousReview.reviewText}}
+                                    </p>
+                                </div>
+                                <div class="col-md-6 modified-version">
+                                	<p class="title">Modified version</p>
+                                    <ratings review-score="{{review.rating}}"></ratings>
+
+                                    <p class="review-text">
+                                        {{review.reviewText}}
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="row" ng-if="!review.previousReview">
+                                <div class="col-md-12">
+                                    <ratings review-score="{{review.rating}}"></ratings>
+
+                                    <p class="review-text">
+                                        {{review.reviewText}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

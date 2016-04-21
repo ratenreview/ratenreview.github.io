@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- custom stylesheets -->
+    <link href="https://builder.yaas.io/public/css/styles.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>    
+    <script src="https://builder.yaas.io/public/js/builder.js"></script>
+    <script src="js/builder-index.js"></script>
+    <title>Configuration</title>
+</head>
+
+<body id="reviews-configuration" ng-app="epam.builder" ng-controller="ReviewsConfigurationCtrl">
+<div class="wrapper">
+    <div class="navbar navbar-default navbar-fixed-top y-navbar-centered y-navbar-lg">
+        <div class="container-fluid">
+            <div class="y-navbar-center">
+                <div class="y-navbar-center-content">
+                    <h1> Configuration </h1>
+                </div>
+            </div>
+            <div class="navbar-right">
+		        <div class="y-toolbar">
+		            <div class="y-toolbar-cell">
+		                <button class="btn btn-subordinate navbar-btn" ng-click="reset()">Cancel</button>
+		            </div>
+		            <div class="y-toolbar-cell">
+		                <button class="btn navbar-btn" ng-disabled="saveButtonDisabled" ng-click="save()"
+		                		ng-class="saveButtonDisabled ? 'btn-grey' : 'btn-warning'">Save</button>
+		            </div>
+		        </div>
+		    </div>
+        </div>
+    </div>
+    <div class="wrapper" ng-cloak>
+        <div class="container-fluid">
+            <div class="row"> 
+            	<div class="col-xs-12">
+            		<div class="panel panel-default">
+            			<div class="panel-heading">Approval Flow</div>
+            			<div class="panel-body">
+		            		<div class="review-configuration">
+		            			<span class="y-toggle y-toggle-lg">
+								  <input type="checkbox" id="toggleidlg-approve-review" ng-checked="configuration.approvalFlowEnable"
+								  	ng-click="toggleConfigCheckbox('approvalFlowEnable')"
+								  	value="configuration.approvalFlowEnable"/>
+								  <label for="toggleidlg-approve-review" data-activelabel="On" data-inactivelabel="Off">
+								  	Approve manually
+								  </label>
+								</span>
+								<br/>
+								<br/>
+			            		<span class="y-toggle y-toggle-lg">
+								  <input type="checkbox" id="toggleidlg-allow-many" ng-checked="configuration.manyReviewsPerProduct"
+								  	ng-click="toggleConfigCheckbox('manyReviewsPerProduct')"
+								  	value="configuration.manyReviewsPerProduct"/>
+								  <label for="toggleidlg-allow-many" data-activelabel="On" data-inactivelabel="Off">
+								  	Allow many reviews for one user per product
+								  </label>
+								</span>
+		            		</div>
+		            	</div>
+	            	</div>
+            		
+            		<div class="panel panel-default">
+            			<div class="panel-heading">Stop Words Management</div>
+            			<div class="panel-body">
+							<div class="stop-words-decisions">
+								<div class="radio">
+									<input type="radio" name="stop-words-decisions" id="auto-reject" 
+										value="reject" 
+										ng-checked="configuration.stopWordsProtection.toLowerCase() == 'reject'"
+										ng-click="toggleConfigRadio('stopWordsProtection', 'REJECT')">
+									<label for="auto-reject">Auto-reject reviews containing stop words (overrides auto-approve option)</label>
+								</div>
+								<div class="radio">
+									<input type="radio" name="stop-words-decisions" id="replace-with-asterisks" 
+										value="replace"
+										ng-checked="configuration.stopWordsProtection.toLowerCase() == 'replace'"
+										ng-click="toggleConfigRadio('stopWordsProtection', 'REPLACE')">
+									<label for="replace-with-asterisks">Replace stop words with asterisks</label>
+								</div>
+								<h2>Stop words</h2>
+								<h4>Enter space between words or enter word in new line</h4>
+								<textarea id="exampleTextarea" class="form-control input-lg ng-scope ng-pristine ng-valid 
+									ng-valid-valid-format ng-valid-valid-characters ng-valid-valid-length" 
+									name="stopWords" builder-input="noRestriction" rows="3"
+									ng-change="onStopWordsListChange('stopWords', configuration.stopWords)"
+									ng-model="configuration.stopWords">
+									{{configuration.stopWords}}
+								</textarea>
+							</div>
+						</div>
+					</div>
+            	</div>           
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,39 @@
+{
+    "widgets": [        
+         {
+            "id": "approveReviewsv2",
+            "title": "Approve Reviews",
+            "settings": {
+                "viewUrl": "reviewApprove.html",
+                "reviewServiceUrl": "https://api.yaas.io/epam/rate-review/v2"
+            },
+            "virtualChildren": true,
+            "widgets" : [
+            	{
+	            	"id": "productReviews",
+	            	"title": "Product Reviews",
+	            	"dynamic": "productId",
+	            	"settings": {
+	            		"viewUrl": "productReviews.html"
+	            	}
+            	}
+            ]
+         },
+         {
+            "id": "approveComments",
+            "title": "Approve Comments",
+            "settings": {
+                "viewUrl": "commentsApprove.html",
+                "reviewServiceUrl": "https://api.yaas.io/epam/rate-review/v2"
+            }
+         },
+         {
+         	"id": "configuration",
+            "title": "Reviews Configuration",
+            "settings": {
+                "viewUrl": "configuration.html",
+                "reviewServiceUrl": "https://api.yaas.io/epam/rate-review/v2"
+            }
+         }
+    ]
+}

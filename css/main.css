@@ -1,0 +1,43 @@
+#product-reviews,
+#product-reviews .wrapper,
+#product-reviews .wrapper .container-fluid,
+#review-details,
+#review-details .wrapper,
+#review-details .wrapper .container-fluid  {
+	padding: 0;
+}
+#product-reviews .panel-body,
+#review-details .panel-body {
+	padding-right: 0;
+}
+.row.header {
+	background-color: #fff;
+	height: 100%;
+    text-align: center;   
+    padding-bottom: 15px; 
+}
+.row.header .navbar-left {
+	margin-top: 15px;
+}
+.row.header .navbar-btn {
+	outline: none;
+}
+#review-details .panel {
+	margin-top: 10px;
+}
+#review-details .panel .approve-remove-box {
+	float: right;
+}
+#review-details .panel .panel-heading {
+	padding-bottom: 20px;	
+}
+#review-details .panel .panel-body .review-content {
+	clear:both;
+}
+.stars > span {
+  display: inline-block;
+  position: relative;
+  width: 1.1em;
+  font-size: 1.5em;
+  color: #FFD700;
+}

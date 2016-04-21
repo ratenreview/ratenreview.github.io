@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <!-- custom stylesheets -->
+    <link href="https://builder.yaas.io/public/css/styles.css" rel="stylesheet"/>
+    <link href="css/style.css" rel="stylesheet"/>
+    <script src="https://builder.yaas.io/public/js/vendor/jquery/dist/jquery.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/angular/angular.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-filter/0.5.8/angular-filter.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.15/angular-ui-router.min.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/underscore/underscore.js"></script>
+    <script src="https://builder.yaas.io/public/js/vendor/restangular/dist/restangular.js"></script>    
+    <script src="https://builder.yaas.io/public/js/builder.js"></script>
+    <script src="js/builder-index.js"></script>
+    <title>Comments</title>
+</head>
+
+<body id="review-details" ng-app="epam.builder" ng-controller="CommentsApproveCtrl">
+<div class="wrapper">
+    <div class="navbar navbar-default navbar-fixed-top y-navbar-centered y-navbar-lg">
+        <div class="container-fluid">
+
+            <div class="y-navbar-center">
+                <div class="y-navbar-center-content">
+                    <h1> Unapproved comments </h1>
+                </div>
+            </div>  
+        </div>
+    </div>
+    <div class="wrapper" ng-cloak>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12">
+                	<h3 class="no-reviews" ng-show="comments.length == 0">No new comments</h3>
+					
+                    <div class="panel panel-default" ng-repeat="comment in comments track by $index">
+                        <div class="panel-heading">
+                            <div class="row">
+                                <div class="col-md-10">
+                                    <div class="row">
+                                        <div class="col-md-4">
+                                        	<h2>
+                                            	<a href="{{comment.reviewUrl}}" target="_blank">Link to review</a>
+                                        	</h2>
+                                        </div>
+                                        <div class="col-md-4">
+                                            <h2>Author name :<br>
+                                                {{comment.authorName}}
+                                            </h2>
+                                        </div>
+                                        <div class=" col-md-4"><h2>Author email :<br>
+                                            {{comment.authorEmail}}
+                                        </h2>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-2">
+                                    <h2 class="pull-right">
+                                        <button class="btn btn-sm btn-success" ng-click="approve($index)">
+                                            APPROVE
+                                        </button>
+                                        <button class="btn btn-sm btn-danger" ng-click="remove($index)">
+                                            <span>REMOVE</span>
+                                        </button>
+                                    </h2>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="panel-body">
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <p class="review-text">
+                                        {{comment.text}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div> 
+
+        </div>
+    </div>
+</div>
+
+</body>
+</html>
